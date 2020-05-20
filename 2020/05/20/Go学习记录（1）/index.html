@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="Ning&#39;s Life">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Go学习记录（1） | Ning&#39;s Life
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+    
+<script src="/js/gitment.js"></script>
+
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+<meta name="generator" content="Hexo 4.2.1"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Ning's Life</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Go学习记录（1）</h2>
+  <p class="post-date">2020-05-20</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p>准备开始学习分布式相关知识，先学习一下Go语言相关基础。</p>
+<h3 id="内置类型"><a href="#内置类型" class="headerlink" title="内置类型"></a>内置类型</h3><p>类型提供完整性和可读性，可以回答相关的问题。</p>
+<ul>
+<li>分配的内存是多少？</li>
+<li>这些内存代表着什么？</li>
+</ul>
+<p>类型是特定的、具体的，比如 <code>int32</code> 和 <code>int64</code> 类型。</p>
+<ul>
+<li>uint8包含一个以10为基数的数字，使用一个字节的内存</li>
+<li>int32包含一个以10为基数的数字，使用4个字节的内存。</li>
+</ul>
+<h3 id="零值概念"><a href="#零值概念" class="headerlink" title="零值概念"></a>零值概念</h3><p>我们创建的每一个值都需要进行初始化，否则将设置成零值。也就是分配的内存内的位全部被设置成0；</p>
+<ul>
+<li>Boolean: false</li>
+<li>Integer: 0</li>
+<li>Floating Point: 0</li>
+<li>Complex: 0i</li>
+<li>String: “”</li>
+<li>Pointer: nil</li>
+</ul>
+<h3 id="声明和初始化"><a href="#声明和初始化" class="headerlink" title="声明和初始化"></a>声明和初始化</h3><ul>
+<li><code>var</code> 是将一个类型初始化为零值的唯一保障。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a <span class="keyword">int</span></span><br><span class="line"><span class="keyword">var</span> b <span class="keyword">string</span></span><br><span class="line"><span class="keyword">var</span> c <span class="keyword">float64</span></span><br><span class="line"><span class="keyword">var</span> d <span class="keyword">bool</span></span><br><span class="line"></span><br><span class="line">fmt.Printf(<span class="string">"var a int \t %T [%v]\n"</span>, a, a)</span><br><span class="line">fmt.Printf(<span class="string">"var b string \t %T [%v]\n"</span>, b, b)</span><br><span class="line">fmt.Printf(<span class="string">"var c float64 \t %T [%v]\n"</span>, c, c)</span><br><span class="line">fmt.Printf(<span class="string">"var d bool \t %T [%v]\n\n"</span>, d, d)</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a int        int [0]</span><br><span class="line">var b string     string []</span><br><span class="line">var c float64    float64 [0]</span><br><span class="line">var d bool       bool [false]</span><br></pre></td></tr></table></figure>
+
+<p>多个变量一起声明。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> (</span><br><span class="line">    name <span class="keyword">string</span></span><br><span class="line">    age <span class="keyword">int</span></span><br><span class="line">    gender <span class="keyword">string</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<ul>
+<li>使用短类型声明法，可以在声明的同时进行初始化，编译器会自动根据右值类型推断左值对应的类型。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">aa := <span class="number">10</span></span><br><span class="line">bb := <span class="string">"hello"</span> <span class="comment">// 1st word points to a array of characters, 2nd word is 5 bytes</span></span><br><span class="line">cc := <span class="number">3.14159</span></span><br><span class="line">dd := <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">fmt.Printf(<span class="string">"aa := 10 \t %T [%v]\n"</span>, aa, aa)</span><br><span class="line">fmt.Printf(<span class="string">"bb := \"hello\" \t %T [%v]\n"</span>, bb, bb)</span><br><span class="line">fmt.Printf(<span class="string">"cc := 3.14159 \t %T [%v]\n"</span>, cc, cc)</span><br><span class="line">fmt.Printf(<span class="string">"dd := true \t %T [%v]\n\n"</span>, dd, dd)</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">aa :&#x3D; 10         int [10]</span><br><span class="line">bb :&#x3D; &quot;hello&quot;    string [hello]</span><br><span class="line">cc :&#x3D; 3.14159    float64 [3.14159]</span><br><span class="line">dd :&#x3D; true       bool [true]</span><br></pre></td></tr></table></figure>
+
+<p>声明和初始化多个变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name, age :&#x3D; &quot;wangbm&quot;, 28</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>new 函数声明一个指针变量。</li>
+</ul>
+<p>普通变量，存放的是数据本身，而指针变量存放的是数据的地址。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age <span class="keyword">int</span> = <span class="number">28</span></span><br><span class="line"><span class="keyword">var</span> ptr = &amp;age  <span class="comment">// &amp;后面接变量名，表示取出该变量的内存地址</span></span><br><span class="line">fmt.Println(<span class="string">"age: "</span>, age)</span><br><span class="line">fmt.Println(<span class="string">"ptr: "</span>, ptr)</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">age:  28</span><br><span class="line">ptr:  0xc000014118</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>用new创建变量和普通变量声明语句方式创建变量没有什么区别，除了不需要声明一个临时变量的名字外，我们还可以在表达式中使用new(Type)。换言之，new函数类似是一种语法糖，而不是一个新的基础概念。</p>
+<p>如下两种写法，可以说是等价的</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用 new</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">newInt</span><span class="params">()</span> *<span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">new</span>(<span class="keyword">int</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用传统的方式</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">newInt</span><span class="params">()</span> *<span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> dummy <span class="keyword">int</span></span><br><span class="line">    <span class="keyword">return</span> &amp;dummy</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<ul>
+<li>匿名变量，也称作占位符，或者空白标识符，用下划线表<ul>
+<li>不分配内存，不占用内存空间</li>
+<li>不需要你为命名无用的变量名而纠结</li>
+<li>多次声明不会有任何问题</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">GetData</span><span class="params">()</span> <span class="params">(<span class="keyword">int</span>, <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">100</span>, <span class="number">200</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    a, _ := GetData()</span><br><span class="line">    _, b := GetData()</span><br><span class="line">    fmt.Println(a, b)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<p>参考：</p>
+<ol>
+<li><a href="https://github.com/hoanhan101/ultimate-go" target="_blank" rel="noopener">https://github.com/hoanhan101/ultimate-go</a></li>
+<li><a href="https://github.com/iswbm/GolangCodingTime" target="_blank" rel="noopener">https://github.com/iswbm/GolangCodingTime</a></li>
+</ol>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Go" >
+    <span class="tag-code">Go</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2020/05/19/%E5%BC%80%E5%8D%9A%E5%B0%8F%E8%AE%B0/">
+        <span class="nav-arrow">← </span>
+        
+          开博小记
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#内置类型"><span class="toc-nav-text">内置类型</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#零值概念"><span class="toc-nav-text">零值概念</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#声明和初始化"><span class="toc-nav-text">声明和初始化</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://ningslife.com/2020/05/20/Go学习记录（1）/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+  <script>
+    var gitmentConfig = "YottaLee";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "Go学习记录（1）",
+        owner: "YottaLee",
+        repo: "YottaLee.github.io",
+        oauth: {
+          client_id: "9c50f6281d94430d7863",
+          client_secret: "ce58086cee15f18e392fce9e4853a7397097848e"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  </script>
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    访问量<span id="busuanzi_value_site_pv"></span>,
+    访客数<span id="busuanzi_value_site_uv"></span>
+  </p>
+</footer>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>
